@@ -1,0 +1,29 @@
+I. Luồng I/O: Ctrl+S ➔ Tích xanh
+[ Ctrl+S ] ➔ 1. Local SSD ➔ 2. Event Watcher ➔ 3. Bộ lọc (.syncignore) ➔ 4. Queue & Hash ➔ 5. Cloud Sync ➔ 6. Tích xanh
+1. Local SSD: IDE ghi file trực tiếp xuống SSD (tốc độ cao, hỗ trợ Hot-Reload).
+
+2. Event Watcher: Phần mềm đồng bộ bắt sự kiện file bị chỉnh sửa từ OS.
+
+3. Bộ lọc ngoại lệ: Lọc bỏ node_modules bằng file cấu hình (.syncignore / Selective Sync). Bỏ qua hàng vạn file rác, chống treo máy.
+
+4. Queue & Hash: Mã hóa và nén các khối dữ liệu mã nguồn thực sự thay đổi.
+
+5. Cloud Sync: Tải dữ liệu đã tối ưu lên Cloud qua HTTPS.
+
+6. Tích xanh: Server xác nhận thành công, giao diện cập nhật biểu tượng đồng bộ complete.
+
+II. Cấu trúc thư mục Cloud
+Plaintext
+Cloud_Workspace_Root/
+01_Projects/       [Local SSD + Cloud Backup]
+startup-js-app/   (Chứa src/, package.json, .gitignore, .syncignore)
+02_Docs/           [Files On-Demand: Online-only] (Tài liệu, API Specs)
+03_Assets/         [Files On-Demand: Online-only] (UI/UX, Media, DB Dumps)
+Quy tắc cốt lõi:
+node_modules Trap: Bỏ qua hoàn toàn node_modules khỏi Cloud. Chỉ sync package.json và mã nguồn. Sang máy mới chỉ cần chạy npm install.
+
+Files On-Demand:
+
+01_Projects: Chọn Always keep on this device để chạy/build mượt trên SSD.
+
+02_Docs & 03_Assets: Chọn Online-only để tiết kiệm tối đa dung lượng Laptop.
